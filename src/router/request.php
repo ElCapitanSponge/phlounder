@@ -4,8 +4,12 @@ namespace phlounder\router;
 
 use phlounder\lib\request_type;
 
+/**
+ * Class for working with the data within the request
+ */
 class request
 {
+    // TODO: Implement header handling
     /**
      * List of paramater keys/values
      *
@@ -47,6 +51,10 @@ class request
 
         $response = [];
 
+        foreach ($_POST as $key => $value) {
+            $response[$key] = filter_input(INPUT_POST, $value, FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+
         return $response;
     }
 
@@ -68,5 +76,15 @@ class request
         $decoded = json_decode($content);
 
         return $decoded;
+    }
+
+    /**
+     * Get the parameters from the route
+     *
+     * @return array<string|int>
+     */
+    public function get_params(): array
+    {
+        return $this->params;
     }
 }
