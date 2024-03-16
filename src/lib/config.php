@@ -1,6 +1,6 @@
 <?php
 
-namespace phlounder;
+namespace phlounder\lib;
 
 /**
  * Confinguration handler
@@ -15,33 +15,16 @@ class config
     private static array $_config = [];
 
     /**
-     * The path of the desired configuration file
+     * new instance of the configuration
      *
-     * @var string|null
+     * @param array<string|int>|null $config=null The config settings
      */
-    private static string|null $_config_path;
-
-    public function __construct(string|null $path = null)
-    {
-        self::$_config_path = $path;
-    }
-
-    /**
-     * Loading of the specified config file
-     *
-     * @return array<string|int> Returns the desired config or an empty array
-     */
-    private static function config_file_load(): array
-    {
-        if (null === self::$_config_path) {
-            return [];
+    public function __construct(
+        array|null $config = null,
+    ) {
+        if (null !== $config) {
+            self::$_config = $config;
         }
-
-        if (true === file_exists(self::$_config_path)) {
-            return require_once(self::$_config_path);
-        }
-
-        return [];
     }
 
     /**
@@ -72,10 +55,6 @@ class config
         string $key,
         string|int|null $default = null
     ): string|int|null {
-        if (0 === count(self::$_config)) {
-            self::$_config = self::config_file_load();
-        }
-
         if (true === self::exists($key)) {
             return self::$_config[$key];
         }
