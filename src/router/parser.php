@@ -17,9 +17,22 @@ class Parser
      */
     public static function match_route(array $route, array $uri): bool
     {
-        // TODO: Implement the logic for the function
-        return false;
+        if (count($route) !== count($uri)) {
+            return false;
+        }
+
+        for ($i = 0; $i < count($route); $i++) {
+            if (
+                $route[$i] !== $uri[$i] &&
+                "{" !== substr($route[$i], 0, 1)
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
+
     /**
      * Extract the route parameters from the specified route and match value
      *
