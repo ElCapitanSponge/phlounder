@@ -2,31 +2,38 @@
 
 namespace phlounder;
 
+use phlounder\lib\response;
 use phlounder\lib\request_type;
+use phlounder\router\request;
 
 class router
 {
-    private static function run($method, $route, $callback)
-    {
-        return null;
+    /**
+     * Generic handler to run all routes
+     *
+     * @param string $method The method for the request
+     * @param string $route The desired route
+     * @param callable $callback The callback function
+     */
+    public function route_add(
+        string $method,
+        string $route,
+        callable $callback
+    ): void {
+        $params = [];
+        $callback(new request($method, $params), new response());
     }
 
-    public static function get($route, $callback)
-    {
-        if (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') !== 0) {
-            return;
-        }
-
-        return self::run($route, $callback);
-    }
-
-    public static function post($route, $callback)
-    {
-        if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') !== 0) {
-            return;
-        }
-
-        return self::run(request_type::POST, $route, $callback);
-    }
+    /**
+     * Add a GET route
+     *
+     * @param string $route The desired route
+     * @param callable $callback The callback function
+     */
+    public function get(
+        string $route,
+        callable $callback
+    ): void {
+        $this->route_add(request_type::GET, $route, $callback);
     }
 }

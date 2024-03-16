@@ -2,7 +2,7 @@
 
 namespace phlounder\lib;
 
-class reponse
+class response
 {
     private static response_message $_msg;
 
