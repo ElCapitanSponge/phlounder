@@ -4,6 +4,7 @@ namespace phlounder;
 
 use phlounder\lib\response;
 use phlounder\lib\request_type;
+use phlounder\router\parser;
 use phlounder\router\request;
 
 class router
@@ -20,8 +21,7 @@ class router
         string $route,
         callable $callback
     ): void {
-        $params = [];
-        $callback(new request($method, $params), new response());
+        $callback(new request(parser::extract_parameters($route), $method), new response());
     }
 
     /**
@@ -35,5 +35,44 @@ class router
         callable $callback
     ): void {
         $this->route_add(request_type::GET, $route, $callback);
+    }
+
+    /**
+     * Add a POST route
+     *
+     * @param string $route The desired route
+     * @param callable $callback The callback function
+     */
+    public function post(
+        string $route,
+        callable $callback
+    ): void {
+        $this->route_add(request_type::POST, $route, $callback);
+    }
+
+    /**
+     * Add a PUT route
+     *
+     * @param string $route The desired route
+     * @param callable $callback The callback function
+     */
+    public function put(
+        string $route,
+        callable $callback
+    ): void {
+        $this->route_add(request_type::PUT, $route, $callback);
+    }
+
+    /**
+     * Add a DELETE route
+     *
+     * @param string $route The desired route
+     * @param callable $callback The callback function
+     */
+    public function delete(
+        string $route,
+        callable $callback
+    ): void {
+        $this->route_add(request_type::DELETE, $route, $callback);
     }
 }

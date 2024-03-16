@@ -14,7 +14,7 @@ class parser
      *
      * @return array<string|int> Key/Value mapping of the request params
      */
-    public function extract_parameters(string $route): array
+    public static function extract_parameters(string $route): array
     {
         $splt_uri = explode("/", $_SERVER['REQUEST_URI']);
         $splt_route = explode("/", $route);
