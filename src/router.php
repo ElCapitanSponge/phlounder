@@ -2,10 +2,11 @@
 
 namespace phlounder;
 
-use phlounder\lib\Response;
 use phlounder\lib\request_type;
+use phlounder\lib\response_codes;
 use phlounder\router\Parser;
 use phlounder\router\Request;
+use phlounder\router\Response;
 
 /**
  * Router for phlounder
@@ -38,6 +39,16 @@ class Router
                 new Response()
             );
         }
+    }
+
+    /**
+     * Default handler to use at the end if nonoe of the previous routes trigger
+     */
+    public function none_found(): void
+    {
+        $res = new Response();
+
+        $res->to_json(response_codes::NOT_FOUND);
     }
 
     /**

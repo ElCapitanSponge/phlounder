@@ -1,6 +1,9 @@
 <?php
 
-namespace phlounder\lib;
+namespace phlounder\router;
+
+use phlounder\lib\ErrorMessages;
+
 
 /**
  * response handler
@@ -12,16 +15,16 @@ class Response
     /**
      * The response message handler
      *
-     * @var ResponseMessage
+     * @var ErrorMessages
      */
-    private static ResponseMessage $_msg;
+    private static ErrorMessages $_msg;
 
     /**
      * Constructor for the response hander
      */
     public function __construct()
     {
-        self::$_msg = new ResponseMessage();
+        self::$_msg = new ErrorMessages();
     }
 
     /**
