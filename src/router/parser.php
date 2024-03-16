@@ -8,6 +8,19 @@ namespace phlounder\router;
 class Parser
 {
     /**
+     * Check to see if the desired route matches with the uri
+     *
+     * @param array<string> $route The route being evaluated
+     * @param array<string> $uri The uri being evaluated
+     *
+     * @return bool **true** if the uri matches the route. **false** if not
+     */
+    public static function match_route(array $route, array $uri): bool
+    {
+        // TODO: Implement the logic for the function
+        return false;
+    }
+    /**
      * Extract the route parameters from the specified route and match value
      *
      * @param array<string> $route The route being used
