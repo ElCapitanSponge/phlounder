@@ -41,9 +41,11 @@ class Response
         header("Content-Type: application/json");
         $res = new response_payload();
         $res->code = $status;
-        $res->message = self::$_msg->get($data->code);
+        // TODO: Resolve issue with the message not parsing properly
+        // $res->message = self::$_msg->get($data->code);
         $res->data = $data;
         echo json_encode($res);
+        exit();
     }
 }
 
@@ -67,7 +69,7 @@ class response_payload
     /**
      * Extra information that woul would like to return in the response. Defaults to NULL
      *
-     * @var \stdClass|null
+     * @var \stdClass|string|null
      */
-    public \stdClass|null $data = null;
+    public \stdClass|string|null $data = null;
 }
