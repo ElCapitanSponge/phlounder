@@ -28,11 +28,11 @@ class response
      * JSON response to return
      *
      * @param int $status The response code to return
-     * @param \stdClass|null $data=null Data to return as part of the response if applicable
+     * @param \stdClass|string|null $data=null Data to return as part of the response if applicable
      */
     public function to_json(
         int $status,
-        \stdClass|null $data = null
+        \stdClass|string|null $data = null
     ): void {
         http_response_code($status);
         header("Content-Type: application/json");

@@ -21,7 +21,19 @@ class router
         string $route,
         callable $callback
     ): void {
-        $callback(new request(parser::extract_parameters($route), $method), new response());
+
+        $splt_uri = explode("/", $_SERVER['REQUEST_URI']);
+        $splt_route = explode("/", $route);
+
+        if (count($splt_route) === count($splt_uri)) {
+            $callback(
+                new request(
+                    parser::extract_parameters($splt_route, $splt_uri),
+                    $method
+                ),
+                new response()
+            );
+        }
     }
 
     /**
