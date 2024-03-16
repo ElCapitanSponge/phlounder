@@ -5,7 +5,7 @@ namespace phlounder\router;
 /**
  * parsing and processing of routes and their parameters
  */
-class parser
+class Parser
 {
     /**
      * Extract the route parameters from the specified route and match value

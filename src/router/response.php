@@ -5,23 +5,23 @@ namespace phlounder\lib;
 /**
  * response handler
  */
-class response
+class Response
 {
     // TODO: Add HTMX response handling
 
     /**
      * The response message handler
      *
-     * @var response_message
+     * @var ResponseMessage
      */
-    private static response_message $_msg;
+    private static ResponseMessage $_msg;
 
     /**
      * Constructor for the response hander
      */
     public function __construct()
     {
-        self::$_msg = new response_message();
+        self::$_msg = new ResponseMessage();
     }
 
     /**

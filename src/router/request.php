@@ -7,7 +7,7 @@ use phlounder\lib\request_type;
 /**
  * Class for working with the data within the request
  */
-class request
+class Request
 {
     // TODO: Implement header handling
     /**

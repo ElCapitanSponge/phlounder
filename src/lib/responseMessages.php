@@ -5,7 +5,7 @@ namespace phlounder\lib;
 /**
  * Messages for supported response codes
  */
-class response_message
+class ResponseMessage
 {
     /**
      * Get the error message for the associated response code

@@ -2,12 +2,15 @@
 
 namespace phlounder;
 
-use phlounder\lib\response;
+use phlounder\lib\Response;
 use phlounder\lib\request_type;
-use phlounder\router\parser;
-use phlounder\router\request;
+use phlounder\router\Parser;
+use phlounder\router\Request;
 
-class router
+/**
+ * Router for phlounder
+ */
+class Router
 {
     /**
      * Generic handler to run all routes
@@ -28,11 +31,11 @@ class router
         if (count($splt_route) === count($splt_uri)) {
             // TODO: Check that all the parts excluding the params match
             $callback(
-                new request(
-                    parser::extract_parameters($splt_route, $splt_uri),
+                new Request(
+                    Parser::extract_parameters($splt_route, $splt_uri),
                     $method
                 ),
-                new response()
+                new Response()
             );
         }
     }
