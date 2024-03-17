@@ -29,7 +29,10 @@ class Router
         $splt_uri = explode("/", $_SERVER['REQUEST_URI']);
         $splt_route = explode("/", $route);
 
-        if (true === Parser::match_route($splt_route,$splt_uri)) {
+        if (
+            $_SERVER["REQUEST_METHOD"] === $method &&
+            true === Parser::match_route($splt_route, $splt_uri)
+        ) {
             $callback(
                 new Request(
                     Parser::extract_parameters($splt_route, $splt_uri),
