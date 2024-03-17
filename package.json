@@ -1,6 +1,6 @@
 {
   "name": "phlounder",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Minimalistic semi-opinionated PHP Routing engine",
   "main": "src/router.php",
   "repository": {
