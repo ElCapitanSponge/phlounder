@@ -91,3 +91,14 @@ $router->delete("/user/{id}", function (Request $req, Response $res) {
 
 $router->none_found();
 ```
+
+## ⇁ Outstanding Tasks
+
+- [ ] Add to composer
+- [ ] Add to NPM
+- [ ] Implement HEADER handling
+- [ ] Implement auth handlers for the HEADER
+  - [ ] Bearer token handling
+  - [ ] PHP Session ID handling
+  - [ ] JWT Handling
+- [ ] Add **authorised required** option to routes
