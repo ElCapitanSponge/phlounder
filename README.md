@@ -11,6 +11,14 @@ PUT, DELETE and OPTIONS. The only thing missing is __your code__.
 
 ## ⇁ Installation
 
+### Composer
+
+```SHELL
+composer require elcapitansponge/phlounder
+```
+
+### Git
+
 __NOTE__ As this is still in development cloning the repo is the way to go.
 
 ```SHELL
@@ -22,11 +30,6 @@ or
 ```SHELL
 git clone git@github.com:ElCapitanSponge/phlounder.git
 ```
-
-### To be implemented
-
-- [x] composer
-- [ ] npm
 
 ## ⇁ Getting Started
 
