@@ -25,7 +25,7 @@ git clone git@github.com:ElCapitanSponge/phlounder.git
 
 ### To be implemented
 
-- [ ] composer
+- [x] composer
 - [ ] npm
 
 ## ⇁ Getting Started
@@ -94,7 +94,7 @@ $router->none_found();
 
 ## ⇁ Outstanding Tasks
 
-- [ ] Add to composer
+- [x] Add to composer
 - [ ] Add to NPM
 - [ ] Implement HEADER handling
 - [ ] Implement auth handlers for the HEADER
