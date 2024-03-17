@@ -7,7 +7,7 @@ namespace phlounder\lib;
  *
  * For reference look at the [mdn docs](https://developer.mozilla.org/en-US/docs/WEB/HTTP/Status)
  */
-enum response_codes
+enum ResponseCodes
 {
     public const OK = 200;
     public const CREATED = 201;

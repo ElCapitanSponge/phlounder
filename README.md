@@ -7,7 +7,7 @@ Minimalistic opinionated PHP Routing engine
 ## ⇁ About
 
 A minimalistic routing engine for PHP allowing route parameters for GET, POST,
-PUT and DELETE. The only thing missing is __your code__.
+PUT, DELETE and OPTIONS. The only thing missing is __your code__.
 
 ## ⇁ Installation
 
@@ -61,32 +61,32 @@ An example implementation of phlounder is as follows
 
 ```PHP
 use phlounder\Router;
-use phlounder\lib\response_codes;
+use phlounder\lib\ResponseCodes;
 use phlounder\router\Request;
 use phlounder\router\Response;
 
 $router = new Router();
 
 $router->get("/", function (Request $req, Response $res) {
-    $res->to_json(response_codes::OK, "Hello World!");
+    $res->to_json(ResponseCodes::OK, "Hello World!");
 });
 
 $router->get("/user/{id}", function (Request $req, Response $res) {
     $data = new \stdClass();
     $data->params = $req->get_params();
-    $res->to_json(response_codes::OK, $data);
+    $res->to_json(ResponseCodes::OK, $data);
 });
 
 $router->post("/user", function (Request $req, Response $res) {
-    $res->to_json(response_codes::CREATED);
+    $res->to_json(ResponseCodes::CREATED);
 });
 
 $router->put("/user/{id}", function (Request $req, Response $res) {
-    $res->to_json(response_codes::OK);
+    $res->to_json(ResponseCodes::OK);
 });
 
 $router->delete("/user/{id}", function (Request $req, Response $res) {
-    $res->to_json(response_codes::OK);
+    $res->to_json(ResponseCodes::OK);
 });
 
 $router->none_found();

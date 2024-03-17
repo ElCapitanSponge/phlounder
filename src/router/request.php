@@ -2,7 +2,7 @@
 
 namespace phlounder\router;
 
-use phlounder\lib\request_type;
+use phlounder\lib\RequestType;
 
 /**
  * Class for working with the data within the request
@@ -43,8 +43,8 @@ class Request
     public function get_body(): array|null
     {
         if (
-            request_type::POST !== $this->method &&
-            request_type::PUT !== $this->method
+            RequestType::POST !== $this->method &&
+            RequestType::PUT !== $this->method
         ) {
             return null;
         }
@@ -66,8 +66,8 @@ class Request
     public function get_json(): \stdClass|null
     {
         if (
-            request_type::POST !== $this->method &&
-            request_type::PUT !== $this->method
+            RequestType::POST !== $this->method &&
+            RequestType::PUT !== $this->method
         ) {
             return null;
         }

@@ -2,8 +2,8 @@
 
 namespace phlounder;
 
-use phlounder\lib\request_type;
-use phlounder\lib\response_codes;
+use phlounder\lib\RequestType;
+use phlounder\lib\ResponseCodes;
 use phlounder\router\Parser;
 use phlounder\router\Request;
 use phlounder\router\Response;
@@ -30,7 +30,7 @@ class Router
         $splt_route = explode("/", $route);
 
         if (
-            $_SERVER["REQUEST_METHOD"] === $method &&
+            true === Parser::method_check($method, $_SERVER["REQUEST_METHOD"]) &&
             true === Parser::match_route($splt_route, $splt_uri)
         ) {
             $callback(
@@ -50,7 +50,7 @@ class Router
     {
         $res = new Response();
 
-        $res->to_json(response_codes::NOT_FOUND);
+        $res->to_json(ResponseCodes::NOT_FOUND);
     }
 
     /**
@@ -63,7 +63,7 @@ class Router
         string $route,
         callable $callback
     ): void {
-        $this->route_add(request_type::GET, $route, $callback);
+        $this->route_add(RequestType::GET, $route, $callback);
     }
 
     /**
@@ -76,7 +76,7 @@ class Router
         string $route,
         callable $callback
     ): void {
-        $this->route_add(request_type::POST, $route, $callback);
+        $this->route_add(RequestType::POST, $route, $callback);
     }
 
     /**
@@ -89,7 +89,7 @@ class Router
         string $route,
         callable $callback
     ): void {
-        $this->route_add(request_type::PUT, $route, $callback);
+        $this->route_add(RequestType::PUT, $route, $callback);
     }
 
     /**
@@ -102,6 +102,6 @@ class Router
         string $route,
         callable $callback
     ): void {
-        $this->route_add(request_type::DELETE, $route, $callback);
+        $this->route_add(RequestType::DELETE, $route, $callback);
     }
 }

@@ -2,6 +2,9 @@
 
 namespace phlounder\router;
 
+use phlounder\lib\RequestType;
+
+
 /**
  * parsing and processing of routes and their parameters
  */
@@ -61,5 +64,30 @@ class Parser
         }
 
         return $pairs;
+    }
+
+    /**
+     * Check to see if the request method matches the desired method, or
+     * the request is of type **OPTIONS**
+     *
+     * @param string $desired_method The wanted request method type
+     * @param string $actual_method The actual method recieved by the server
+     *
+     * @return bool **true** if the desired and actual types match, or
+     * **OPTIONS** is recieved. **false** otherwise
+     */
+    public static function method_check(
+        string $desired_method,
+        string $actual_method
+    ): bool {
+        if (RequestType::OPTIONS === $actual_method) {
+            return true;
+        }
+
+        if ($desired_method === $actual_method) {
+            return true;
+        }
+
+        return false;
     }
 }
