@@ -17,21 +17,21 @@ class ErrorMessages
     public function get(int $code): string
     {
         switch ($code) {
-            case response_codes::OK:
+            case ResponseCodes::OK:
                 return "OK";
-            case response_codes::CREATED:
+            case ResponseCodes::CREATED:
                 return "Created successfully";
-            case response_codes::NO_CONTENT:
+            case ResponseCodes::NO_CONTENT:
                 return "No content in response";
-            case response_codes::FORBIDDEN:
+            case ResponseCodes::FORBIDDEN:
                 return "Unauthorised access";
-            case response_codes::NOT_FOUND:
+            case ResponseCodes::NOT_FOUND:
                 return "Not Found";
-            case response_codes::METHOD_NOT_ALLOWED:
+            case ResponseCodes::METHOD_NOT_ALLOWED:
                 return "Invalid method used";
-            case response_codes::GONE:
+            case ResponseCodes::GONE:
                 return "Requested content no longer exists";
-            case response_codes::TEAPOT:
+            case ResponseCodes::TEAPOT:
                 return "I'm a teapot";
             default:
                 return "Unknown error";
