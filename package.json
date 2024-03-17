@@ -1,0 +1,21 @@
+{
+  "name": "phlounder",
+  "version": "0.1.1",
+  "description": "Minimalistic semi-opinionated PHP Routing engine",
+  "main": "src/router.php",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElCapitanSponge/phlounder.git"
+  },
+  "keywords": [
+    "PHP",
+    "Router",
+    "Library"
+  ],
+  "author": "Andrew Brunker <andrew@brunker.net.au>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ElCapitanSponge/phlounder/issues"
+  },
+  "homepage": "https://github.com/ElCapitanSponge/phlounder#readme"
+}
