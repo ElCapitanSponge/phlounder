@@ -113,4 +113,30 @@ class Parser
 
         return false;
     }
+
+    /**
+     * Extract the headers for the current request
+     *
+     * @param array<string> $custom_headers=[] List of custom headers to retrieve alongside the normal ``HTTP_`` headers
+     *
+     * @return array<string> A list of the applicable headers with the ``key``
+     * being the header type, and the value as the applicable header value.
+     */
+    public static function headers_get(array $custom_headers = []): array
+    {
+        $headers = [];
+
+        foreach ($_SERVER as $key => $value) {
+            if (
+                "HTTP_" !== substr($key, 0, 5) ||
+                true === in_array($key, $custom_headers, true)
+            ) {
+                continue;
+            }
+            $header = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
+            $headers[$header] = $value;
+        }
+
+        return $headers;
+    }
 }
