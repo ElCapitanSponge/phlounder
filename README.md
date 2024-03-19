@@ -95,13 +95,68 @@ $router->delete("/user/{id}", function (Request $req, Response $res) {
 $router->none_found();
 ```
 
+### Route Handling
+
+The routing due to the nature of implementation follows the order of precidence.
+In otherwords, a top to bottom approach when processing.
+
+This is apparent with the following snippet:
+
+```PHP
+$router->get("/user/{id}", function (Request $req, Response $res) {
+    $data = new \stdClass();
+    $data->params = $req->get_params();
+    $res->to_json(ResponseCodes::OK, $data);
+});
+
+$router->get("/user/foo", function (Request $req, Response $res) {
+    $res->to_json(ResponseCodes::OK, "Bar!");
+});
+```
+
+In the above snippet if you hit ``/user/foo``
+You don't recieve:
+
+```JSON
+{
+    "code": 200,
+    "data": "Bar!"
+}
+```
+
+Instead you recieve:
+
+```JSON
+{
+    "code": 200,
+    "data": {
+        "params": {
+            "id": "foo"
+        }
+    }
+}
+```
+
+To resolve this issue we have to place the ``/user/foo`` route before ``/user/{id}``
+
+```PHP
+$router->get("/user/foo", function (Request $req, Response $res) {
+    $res->to_json(ResponseCodes::OK, "Bar!");
+});
+
+$router->get("/user/{id}", function (Request $req, Response $res) {
+    $data = new \stdClass();
+    $data->params = $req->get_params();
+    $res->to_json(ResponseCodes::OK, $data);
+});
+```
+
 ## ⇁ Outstanding Tasks
 
 - [x] Add to composer
-- [ ] Add to NPM
 - [ ] Implement HEADER handling
 - [ ] Implement auth handlers for the HEADER
   - [ ] Bearer token handling
   - [ ] PHP Session ID handling
   - [ ] JWT Handling
-- [ ] Add **authorised required** option to routes
+- [ ] Add __authorised required__ option to routes
