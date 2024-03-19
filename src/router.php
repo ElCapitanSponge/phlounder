@@ -31,6 +31,10 @@ class Router
             $uri = rtrim($uri, "/");
         }
 
+        if ("/" === substr($route, -1)) {
+            $route = rtrim($route, "/");
+        }
+
         $splt_uri = explode("/", $uri);
         $splt_route = explode("/", $route);
 
