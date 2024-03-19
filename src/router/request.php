@@ -24,6 +24,12 @@ class Request
     private string $method;
 
     /**
+     * The request headers
+     *
+     * @var array<string>
+     */
+    private array $headers;
+    /**
      * Constructor for the request class
      *
      * @param array<string|int> $params List of key value pairs from the route
@@ -33,6 +39,7 @@ class Request
     {
         $this->params = $params;
         $this->method = $method;
+        $this->headers = Parser::headers_get();
     }
 
     /**
@@ -86,5 +93,15 @@ class Request
     public function get_params(): array
     {
         return $this->params;
+    }
+
+    /**
+     * Get the headers from the request
+     *
+     * @return array<string>
+     */
+    public function get_headers(): array
+    {
+        return $this->headers;
     }
 }
