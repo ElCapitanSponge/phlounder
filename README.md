@@ -160,3 +160,4 @@ $router->get("/user/{id}", function (Request $req, Response $res) {
   - [ ] PHP Session ID handling
   - [ ] JWT Handling
 - [ ] Add __authorised required__ option to routes
+- [ ] Add optional type specificity to route params (``string`` or ``int``)
