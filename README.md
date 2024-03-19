@@ -150,3 +150,33 @@ $router->get("/user/{id}", function (Request $req, Response $res) {
     $res->to_json(ResponseCodes::OK, $data);
 });
 ```
+
+### Route paramater types
+
+There is type handling for ``string`` or ``int`` in the route params if desired.
+
+Taking the following:
+
+```PHP
+$router->get("/users/{id:i}", function (Request $req, Response $res) {
+    $data = new \stdClass();
+    $data->params = $req->get_params();
+    $res->to_json(ResponseCodes::OK, $data);
+});
+
+$router->get("/course/{code:s}", function (Request $req, Response $res) {
+    $data = new \stdClass();
+    $data->params = $req->get_params();
+    $res->to_json(ResponseCodes::OK, $data);
+});
+
+$router->get("/category/{id}", function (Request $req, Response $res) {
+    $data = new \stdClass();
+    $data->params = $req->get_params();
+    $res->to_json(ResponseCodes::OK, $data);
+});
+```
+
+- ``/users/{id:i}``: The ``id`` param is specified to be an ``int``
+- ``/course/{code:s}``: The ``code`` param is specified to be a ``string``
+- ``/category/{id}``: The ``id`` param can be either a ``string`` or an ``int``
