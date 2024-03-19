@@ -25,8 +25,13 @@ class Router
         string $route,
         callable $callback
     ): void {
+        // INFO: if the url ends with '/', remove the character
+        $uri = $_SERVER["REQUEST_URI"];
+        if ("/" === substr($uri, -1)) {
+            $uri = rtrim($uri, "/");
+        }
 
-        $splt_uri = explode("/", $_SERVER['REQUEST_URI']);
+        $splt_uri = explode("/", $uri);
         $splt_route = explode("/", $route);
 
         if (

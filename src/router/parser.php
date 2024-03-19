@@ -4,7 +4,6 @@ namespace phlounder\router;
 
 use phlounder\lib\RequestType;
 
-
 /**
  * parsing and processing of routes and their parameters
  */
