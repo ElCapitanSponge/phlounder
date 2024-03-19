@@ -150,14 +150,3 @@ $router->get("/user/{id}", function (Request $req, Response $res) {
     $res->to_json(ResponseCodes::OK, $data);
 });
 ```
-
-## ⇁ Outstanding Tasks
-
-- [x] Add to composer
-- [ ] Implement HEADER handling
-- [ ] Implement auth handlers for the HEADER
-  - [ ] Bearer token handling
-  - [ ] PHP Session ID handling
-  - [ ] JWT Handling
-- [ ] Add __authorised required__ option to routes
-- [ ] Add optional type specificity to route params (``string`` or ``int``)
