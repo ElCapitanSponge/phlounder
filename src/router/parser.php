@@ -30,6 +30,28 @@ class Parser
             ) {
                 return false;
             }
+
+            if (
+                $route[$i] !== $uri[$i] &&
+                "{" === substr($route[$i], 0, 1)
+            ) {
+                // INFO: Checking ifroute param matches type if required
+                $raw_key = str_replace("{", "", $route[$i]);
+                $raw_key = str_replace("}", "", $raw_key);
+
+                $tmp = explode(":", $raw_key);
+
+                if (2 === count($tmp)) {
+                    $type = $tmp[1];
+                    if ("s" !== $type && "i" !== $type) {
+                        return false;
+                    }
+
+                    if ("i" === $type && false === ctype_digit($uri[$i])) {
+                        return false;
+                    }
+                }
+            }
         }
 
         return true;
@@ -52,13 +74,15 @@ class Parser
                 $key = str_replace("{", "", $route[$i]);
                 $key = str_replace("}", "", $key);
 
+                $tmp_key = explode(":", $key);
+
                 $value = $uri[$i];
 
                 if (true === ctype_digit($value)) {
                     $value = (int)$value;
                 }
 
-                $pairs[$key] = $value;
+                $pairs[$tmp_key[0]] = $value;
             }
         }
 
